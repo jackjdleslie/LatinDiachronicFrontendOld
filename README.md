@@ -8,7 +8,7 @@ For more information on the toolkit view the [original repository](https://githu
 
 ## Using the live web application
 
-Currently the latest build of the `master` branch is deployed via Netlify and is available at the link [https://latin.netlify.com]. You can also run locally by cloning this repository and starting a development server with `node` and `yarn`.
+Currently the latest build of the `master` branch is deployed via Netlify and is available at the link [latin.netlify.com](https://latin.netliy.com). You can also run locally by cloning this repository and starting a development server with `node` and `yarn`.
 
 ## Developing locally
 
