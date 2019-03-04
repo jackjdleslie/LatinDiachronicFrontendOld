@@ -1,0 +1,11 @@
+.status {
+  color: #6c6f7f;
+  border: solid 1px #6c6f7f;
+  border-radius: 12px;
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.text {
+  margin: 0;
+}
