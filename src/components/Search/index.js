@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import useLemma from '../../hooks/useLemma';
 
 import Subtitle from '../Subtitle';
 
 import styles from './search.module.css';
 
+import useCount from '../../hooks/useCount';
+
 export default function Search({ ...props }) {
-  const count = '1,239,971';
+  const [state, setState] = useState('interdum');
+  const [lemmata, getLemmata] = useLemma(state);
+  const count = useCount();
+
   return (
     <div className={styles.container}>
       <div className={styles.search}>
@@ -17,22 +24,18 @@ export default function Search({ ...props }) {
             className={styles.searchFormInput}
             type="text"
             name="first"
-            placeholder="first"
+            placeholder="e.g interdum"
+            onChange={setState}
           />
-          <input
-            className={styles.searchFormInput}
-            type="text"
-            name="second"
-            placeholder="second"
-          />
-          <input
-            className={styles.searchFormInput}
-            type="text"
-            name="third"
-            placeholder="third"
-          />
+          <button
+            className={styles.searchFormButton}
+            onClick={() => getLemmata(state)}
+          >
+            Search
+          </button>
         </div>
       </div>
+      {lemmata && lemmata.map(result => <h1>Hello</h1>)}
     </div>
   );
 }

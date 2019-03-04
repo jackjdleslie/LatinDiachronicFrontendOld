@@ -8,16 +8,23 @@
   background-color: #c0d6df;
   display: block;
   border-radius: 2px;
-  width: 55vw;
+  width: 57vw;
 }
 
 .searchForm {
   display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .searchFormInput {
+  flex-grow: 5;
+  padding: 10px;
+  font-family: system-ui;
+  font-size: 14px;
+}
+
+.searchFormButton {
+  flex-grow: 1;
   padding: 10px;
   font-family: system-ui;
   font-size: 14px;
