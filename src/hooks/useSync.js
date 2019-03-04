@@ -13,7 +13,7 @@ export default function useSync() {
       .catch(() => {
         setIsSynced(false);
       });
-  }, [isSynced]);
+  }, []);
 
   return isSynced;
 }
