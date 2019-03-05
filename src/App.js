@@ -5,6 +5,7 @@ import Status from './components/Status';
 import Title from './components/Title';
 import Search from './components/Search';
 import Footer from './components/Footer';
+import Jumbo from './components/Jumbo';
 
 import useSync from './hooks/useSync';
 
@@ -17,6 +18,7 @@ export default function App() {
         <Title text="Latin Diachronic Analysis" />
         <Status text={isSynced ? 'Online' : 'Offline'} />
       </Header>
+      <Jumbo text="An innovative toolkit for the quantitative computational analysis of the Latin language" />
       <Search />
       <Footer />
     </div>

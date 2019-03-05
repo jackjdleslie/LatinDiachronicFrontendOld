@@ -1,0 +1,15 @@
+.jumbo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-left: solid 4px #313e50;
+  padding-left: 30px;
+  margin: 25px 0px 50px 0px;
+}
+
+.jumboText {
+  color: #313e50;
+  font-weight: 400;
+  margin: 0;
+}

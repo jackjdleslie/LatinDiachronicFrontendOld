@@ -7,10 +7,13 @@ import styles from './footer.module.css';
 export default function Footer({ children, ...props }) {
   return (
     <div className={styles.footer}>
-      <p className={styles.footerText}>Open Source</p>
+      <Link
+        text="Open Source"
+        link="https://github.com/WizardOfMenlo/LatinDiachronicDatabase"
+      />
       <div className={styles.footerList}>
         <Link text="About" link="/about" />
-        <Link text="API" link="/api" />
+        <Link text="Data" link="/api" />
         <Link text="Contact" link="/contact" />
       </div>
     </div>
