@@ -16,7 +16,14 @@
 .resultsClear {
   font-family: system-ui;
   font-size: 16px;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  background-color: transparent;
+  color: #313e50;
   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .resultsText {

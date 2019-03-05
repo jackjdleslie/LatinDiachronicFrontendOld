@@ -12,9 +12,9 @@ export default function Results({ results, type, clear }) {
           <>
             <div className={styles.resultsTitle}>
               <Subtitle text="Results" />
-              <a className={styles.resultsClear} onClick={clear}>
+              <button className={styles.resultsClear} onClick={clear}>
                 Clear
-              </a>
+              </button>
             </div>
             {Object.entries(results.forms).map(([lemma, occurences]) => (
               <p
@@ -38,9 +38,9 @@ export default function Results({ results, type, clear }) {
           <>
             <div className={styles.resultsTitle}>
               <Subtitle text="Results" />
-              <a className={styles.resultsClear} onClick={clear}>
+              <button className={styles.resultsClear} onClick={clear}>
                 Clear
-              </a>
+              </button>
             </div>
             {results.lemmas.map((lemma, index) => (
               <p className={styles.resultsText} key={index}>
@@ -56,9 +56,9 @@ export default function Results({ results, type, clear }) {
           <>
             <div className={styles.resultsTitle}>
               <Subtitle text={`${results.length} Results`} />
-              <a className={styles.resultsClear} onClick={clear}>
+              <button className={styles.resultsClear} onClick={clear}>
                 Clear
-              </a>
+              </button>
             </div>
             {results.map((occurence, index) => (
               <div key={index}>
@@ -74,9 +74,9 @@ export default function Results({ results, type, clear }) {
           <>
             <div className={styles.resultsTitle}>
               <Subtitle text={`${results.length} Results`} />
-              <a className={styles.resultsClear} onClick={clear}>
+              <button className={styles.resultsClear} onClick={clear}>
                 Clear
-              </a>
+              </button>
             </div>
             {results.map(lemma => (
               <p key={lemma} className={styles.resultsText}>

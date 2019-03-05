@@ -11,8 +11,6 @@ import styles from './intersection.module.css';
 export default function Intersection({ ...props }) {
   const [text, setText] = useState('');
   const [results, getResults, clearResults] = useDetect(null);
-  const [select, setSelect] = useState('lemma');
-  const [showClear, setShowClear] = useState(false);
 
   function clear() {
     clearResults();
@@ -29,10 +27,7 @@ export default function Intersection({ ...props }) {
             type="text"
             name="intersectionSearch"
             placeholder="e.g Marcus Tullius Cicero, Gaius Sallustius Crispus"
-            onChange={e => {
-              setText(e.target.value);
-              setShowClear(true);
-            }}
+            onChange={e => setText(e.target.value)}
             value={text}
           />
           <button
