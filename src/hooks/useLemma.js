@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function useLemma(text, select) {
+export default function useLemma() {
   const [lemmata, setLemmata] = useState(null);
 
-  function getLemmata(text, select) {
+  function getLemmata(text, select, find) {
+    if (find) {
+      if (select === 'lemma') select = 'find';
+      else select = 'match';
+    }
     axios
       .get(
         `${process.env.REACT_APP_LATIN_DIACHRONIC_API_URL}/${select}/${text}`

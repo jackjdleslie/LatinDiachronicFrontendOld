@@ -12,13 +12,23 @@ import useCount from '../../hooks/useCount';
 
 export default function Search({ ...props }) {
   const [text, setText] = useState('');
-  const [lemmata, getLemmata, clearLemmata] = useLemma(null);
+  const [lemmata, getLemmata, clearLemmata] = useLemma();
   const [select, setSelect] = useState('lemma');
   const count = useCount();
 
   function clear() {
     clearLemmata();
     setText('');
+  }
+
+  function find(checked) {
+    if (checked) {
+      if (select === 'lemma') setSelect('find');
+      else if (select === 'form') setSelect('match');
+    } else {
+      if (select === 'find') setSelect('lemma');
+      else if (select === 'match') setSelect('form');
+    }
   }
 
   return (
@@ -38,8 +48,6 @@ export default function Search({ ...props }) {
           >
             <option value="lemma">Lemma</option>
             <option value="form">Form</option>
-            <option value="match">Match Form</option>
-            <option value="find">Find Lemma</option>
           </select>
           <input
             className={styles.searchFormInput}
@@ -52,6 +60,7 @@ export default function Search({ ...props }) {
             }
             onChange={e => setText(e.target.value)}
             value={text}
+            checked={select === 'find' || select === 'match'}
           />
           <button
             className={styles.searchFormButton}
@@ -60,6 +69,20 @@ export default function Search({ ...props }) {
           >
             Search
           </button>
+        </div>
+        <div className={styles.searchForm}>
+          <div className={styles.searchFormCheckbox}>
+            <input
+              type="checkbox"
+              id="find"
+              name="find"
+              onChange={e => {
+                find(e.target.checked);
+                clearLemmata();
+              }}
+            />
+            <label htmlFor="find">Find occurences</label>
+          </div>
         </div>
       </div>
       <Results results={lemmata} type={select} clear={clear} />

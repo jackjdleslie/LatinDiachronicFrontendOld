@@ -54,6 +54,10 @@
   font-size: 16px;
 }
 
+.searchFormCheckbox {
+  margin-top: 10px;
+}
+
 .searchFormButton:disabled {
   opacity: 0.8;
 }
