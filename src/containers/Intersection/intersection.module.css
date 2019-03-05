@@ -1,11 +1,11 @@
 .container {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   flex-direction: column;
 }
 
-.search {
+.intersection {
   padding: 10px 30px 30px 30px;
   background-color: #c0d6df;
   display: block;
@@ -17,15 +17,8 @@
   flex-wrap: wrap;
 }
 
-.searchFormSelect {
-  flex-grow: 1;
-  padding: 10px;
-  font-family: system-ui;
-  font-size: 16px;
-}
-
 .searchFormInput {
-  flex-grow: 18;
+  flex-grow: 21;
   padding: 10px;
   font-family: system-ui;
   font-size: 16px;
@@ -35,7 +28,7 @@
 }
 
 .searchFormButton {
-  flex-grow: 5;
+  flex-grow: 4;
   display: inline-block;
   border: none;
   padding: 1rem 2rem;

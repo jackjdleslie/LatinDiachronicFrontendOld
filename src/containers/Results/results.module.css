@@ -7,6 +7,18 @@
   overflow-y: scroll;
 }
 
+.resultsTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultsClear {
+  font-family: system-ui;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .resultsText {
   margin: 0;
 }

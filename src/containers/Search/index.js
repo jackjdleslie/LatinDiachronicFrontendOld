@@ -44,23 +44,25 @@ export default function Search({ ...props }) {
           <input
             className={styles.searchFormInput}
             type="text"
-            name="input"
-            placeholder="e.g interdum"
+            name="lemmaSearch"
+            placeholder={
+              select === 'lemma' || select === 'find'
+                ? 'e.g interdum'
+                : 'e.g interdumque'
+            }
             onChange={e => setText(e.target.value)}
             value={text}
           />
           <button
             className={styles.searchFormButton}
-            onClick={() =>
-              lemmata === null ? getLemmata(text, select) : clear()
-            }
+            onClick={() => getLemmata(text, select)}
             disabled={text.length === 0}
           >
-            {lemmata === null ? 'Search' : 'Clear'}
+            Search
           </button>
         </div>
       </div>
-      <Results results={lemmata} type={select} />
+      <Results results={lemmata} type={select} clear={clear} />
     </div>
   );
 }

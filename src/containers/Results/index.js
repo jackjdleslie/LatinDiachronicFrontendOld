@@ -4,13 +4,18 @@ import Subtitle from '../../components/Subtitle';
 
 import styles from './results.module.css';
 
-export default function Results({ results, type }) {
+export default function Results({ results, type, clear }) {
   return (
     results && (
       <div className={styles.results}>
         {type === 'lemma' && results.forms && (
           <>
-            <Subtitle text="Results" />
+            <div className={styles.resultsTitle}>
+              <Subtitle text="Results" />
+              <a className={styles.resultsClear} onClick={clear}>
+                Clear
+              </a>
+            </div>
             {Object.entries(results.forms).map(([lemma, occurences]) => (
               <p
                 className={styles.resultsText}
@@ -31,7 +36,12 @@ export default function Results({ results, type }) {
         )}
         {type === 'form' && results.form && (
           <>
-            <Subtitle text="Results" />
+            <div className={styles.resultsTitle}>
+              <Subtitle text="Results" />
+              <a className={styles.resultsClear} onClick={clear}>
+                Clear
+              </a>
+            </div>
             {results.lemmas.map((lemma, index) => (
               <p className={styles.resultsText} key={index}>
                 {`Resolves to ${lemma}`}
@@ -44,7 +54,12 @@ export default function Results({ results, type }) {
         )}
         {(type === 'match' || type === 'find') && (
           <>
-            <Subtitle text={`${results.length} Results`} />
+            <div className={styles.resultsTitle}>
+              <Subtitle text={`${results.length} Results`} />
+              <a className={styles.resultsClear} onClick={clear}>
+                Clear
+              </a>
+            </div>
             {results.map((occurence, index) => (
               <div key={index}>
                 <p className={styles.resultsText}>
@@ -52,6 +67,21 @@ export default function Results({ results, type }) {
                 </p>
                 <p className={styles.resultsLine}>{`"${occurence.line}"`}</p>
               </div>
+            ))}
+          </>
+        )}
+        {type === 'intersection' && (
+          <>
+            <div className={styles.resultsTitle}>
+              <Subtitle text={`${results.length} Results`} />
+              <a className={styles.resultsClear} onClick={clear}>
+                Clear
+              </a>
+            </div>
+            {results.map(lemma => (
+              <p key={lemma} className={styles.resultsText}>
+                {lemma}
+              </p>
             ))}
           </>
         )}

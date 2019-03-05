@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Jumbo from './components/Jumbo';
 
 import Search from './containers/Search';
+import Intersection from './containers/Intersection';
 
 import useSync from './hooks/useSync';
 
@@ -27,6 +28,7 @@ export default function App() {
         for digital intertextual source.
       </Jumbo>
       <Search />
+      <Intersection />
       <Footer />
     </div>
   );
