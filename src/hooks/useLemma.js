@@ -8,6 +8,7 @@ export default function useLemma(lemma) {
     axios
       .get(`${process.env.REACT_APP_LATIN_DIACHRONIC_API_URL}/lemma/${lemma}`)
       .then(results => {
+        console.log(results);
         setLemmata(results.data);
       })
       .catch(() => {

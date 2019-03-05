@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import useLemma from '../../hooks/useLemma';
 
+import Title from '../Title';
 import Subtitle from '../Subtitle';
 
 import styles from './search.module.css';
@@ -9,8 +10,8 @@ import styles from './search.module.css';
 import useCount from '../../hooks/useCount';
 
 export default function Search({ ...props }) {
-  const [state, setState] = useState('interdum');
-  const [lemmata, getLemmata] = useLemma(state);
+  const [state, setState] = useState('');
+  const [lemmata, getLemmata] = useLemma(null);
   const count = useCount();
 
   return (
@@ -25,7 +26,7 @@ export default function Search({ ...props }) {
             type="text"
             name="first"
             placeholder="e.g interdum"
-            onChange={setState}
+            onChange={e => setState(e.target.value)}
           />
           <button
             className={styles.searchFormButton}
@@ -35,7 +36,27 @@ export default function Search({ ...props }) {
           </button>
         </div>
       </div>
-      {lemmata && lemmata.map(result => <h1>Hello</h1>)}
+      {lemmata && (
+        <div className={styles.searchResults}>
+          <Subtitle text="Results" />
+          {Object.entries(lemmata.forms).map(([lemma, occurences]) => (
+            <p
+              className={styles.searchResultsText}
+              key={lemma}
+            >{`${lemma}: ${occurences}`}</p>
+          ))}
+          {Object.entries(lemmata.forms).length > 0 && (
+            <p className={styles.searchResultsForms}>{`${
+              Object.entries(lemmata.forms).length
+            } ${
+              Object.entries(lemmata.forms).length === 1 ? 'form' : 'forms'
+            } of ${lemmata.lemma}`}</p>
+          )}
+          <p className={styles.searchResultsTotal}>{`${
+            lemmata.total
+          } occurences of ${lemmata.lemma}`}</p>
+        </div>
+      )}
     </div>
   );
 }
