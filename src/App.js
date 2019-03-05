@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Status from './components/Status';
 import Title from './components/Title';
 import Search from './components/Search';
+import Footer from './components/Footer';
 
 import useSync from './hooks/useSync';
 
@@ -17,6 +18,7 @@ export default function App() {
         <Status text={isSynced ? 'Online' : 'Offline'} />
       </Header>
       <Search />
+      <Footer />
     </div>
   );
 }
