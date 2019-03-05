@@ -17,8 +17,15 @@
   flex-wrap: wrap;
 }
 
+.searchFormSelect {
+  flex-grow: 1;
+  padding: 10px;
+  font-family: system-ui;
+  font-size: 16px;
+}
+
 .searchFormInput {
-  flex-grow: 5;
+  flex-grow: 18;
   padding: 10px;
   font-family: system-ui;
   font-size: 16px;
@@ -28,7 +35,7 @@
 }
 
 .searchFormButton {
-  flex-grow: 1;
+  flex-grow: 5;
   display: inline-block;
   border: none;
   padding: 1rem 2rem;
@@ -46,21 +53,6 @@
   font-size: 16px;
 }
 
-.searchResults {
-  padding: 10px 30px 30px 30px;
-  background-color: #96bdc6;
-  display: block;
-  border-radius: 2px;
-}
-
-.searchResultsText {
-  margin: 0;
-}
-
-.searchResultsTotal {
-  margin: 0;
-}
-
-.searchResultsForms {
-  margin-bottom: 0;
+.searchFormButton:disabled {
+  opacity: 0.8;
 }

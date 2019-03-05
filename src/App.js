@@ -3,9 +3,10 @@ import React from 'react';
 import Header from './components/Header';
 import Status from './components/Status';
 import Title from './components/Title';
-import Search from './components/Search';
 import Footer from './components/Footer';
 import Jumbo from './components/Jumbo';
+
+import Search from './containers/Search';
 
 import useSync from './hooks/useSync';
 

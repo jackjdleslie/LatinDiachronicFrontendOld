@@ -1,0 +1,28 @@
+.results {
+  padding: 10px 30px 30px 30px;
+  background-color: #96bdc6;
+  display: block;
+  border-radius: 2px;
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.resultsText {
+  margin: 0;
+}
+
+.resultsLine {
+  margin-top: 0;
+}
+
+.resultsTotal {
+  margin: 0;
+}
+
+.resultsForms {
+  margin-bottom: 0;
+}
+
+.resultsAppears {
+  margin-bottom: 0;
+}
