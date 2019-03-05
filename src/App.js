@@ -18,7 +18,13 @@ export default function App() {
         <Title text="Latin Diachronic Analysis" />
         <Status text={isSynced ? 'Online' : 'Offline'} />
       </Header>
-      <Jumbo text="An innovative toolkit for the quantitative computational analysis of the Latin language" />
+      <Jumbo title="An innovative toolkit for the quantitative computational analysis of the Latin language">
+        This project revolves around allowing for a flexible and easy to use
+        interface to run quantitative queries on Latin literature. In
+        particular, we focus on providing a tool for statistical computational
+        analysis of the Latin language, diachronic frequency analysis and aid
+        for digital intertextual source.
+      </Jumbo>
       <Search />
       <Footer />
     </div>

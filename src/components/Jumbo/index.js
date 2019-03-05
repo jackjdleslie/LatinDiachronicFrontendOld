@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 
 import styles from './jumbo.module.css';
 
-export default function Header({ text, ...props }) {
+export default function Header({ title, children, ...props }) {
   return (
     <div className={styles.jumbo} {...props}>
-      <h1 className={styles.jumboText}>{text}</h1>
+      <h1 className={styles.jumboTitle}>{title}</h1>
+      <p className={styles.jumboText}>{children}</p>
     </div>
   );
 }
 
 Header.propTypes = {
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };

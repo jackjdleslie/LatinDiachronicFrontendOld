@@ -1,5 +1,6 @@
 .jumbo {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
@@ -8,8 +9,27 @@
   margin: 25px 0px 50px 0px;
 }
 
-.jumboText {
+.jumboTitle {
   color: #313e50;
   font-weight: 400;
   margin: 0;
+}
+
+.jumboText {
+  color: #313e50;
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 400px) {
+  .jumbo {
+    padding-left: 20px;
+  }
+
+  .jumboTitle {
+    font-size: 30px;
+  }
+
+  .jumboText {
+    font-size: 13px;
+  }
 }
