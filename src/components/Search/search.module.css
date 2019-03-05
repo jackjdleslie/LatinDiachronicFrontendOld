@@ -21,8 +21,9 @@
   flex-grow: 5;
   padding: 10px;
   font-family: system-ui;
-  font-size: 14px;
+  font-size: 16px;
   border-style: hidden;
+  border-radius: 0;
 }
 
 .searchFormButton {
@@ -41,7 +42,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   font-family: system-ui;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .searchResults {

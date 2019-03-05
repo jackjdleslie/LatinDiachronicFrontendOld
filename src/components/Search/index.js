@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import useLemma from '../../hooks/useLemma';
 
-import Title from '../Title';
 import Subtitle from '../Subtitle';
 
 import styles from './search.module.css';
