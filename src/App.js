@@ -11,7 +11,7 @@ export default function App() {
   const isSynced = useSync();
 
   return (
-    <div>
+    <div style={{ margin: '0 auto', maxWidth: '920px' }}>
       <Header>
         <Title text="Latin Diachronic Analysis" />
         <Status text={isSynced ? 'Online' : 'Offline'} />
