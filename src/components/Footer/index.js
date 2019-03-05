@@ -12,9 +12,12 @@ export default function Footer({ children, ...props }) {
         link="https://github.com/WizardOfMenlo/LatinDiachronicDatabase"
       />
       <div className={styles.footerList}>
-        <Link text="About" link="/about" />
-        <Link text="Data" link="/api" />
-        <Link text="Contact" link="/contact" />
+        <Link
+          text="About"
+          link="https://github.com/WizardOfMenlo/LatinDiachronicDatabase#readme"
+        />
+        <Link text="Data" link="#" />
+        <Link text="Contact" link="#" />
       </div>
     </div>
   );
