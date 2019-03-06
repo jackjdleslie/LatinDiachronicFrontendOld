@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import useDetect from '../../hooks/useDetect';
 
 import Subtitle from '../../components/Subtitle';
+import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
+import Search from '../../components/Search';
 
 import Results from '../Results';
 
@@ -18,28 +21,20 @@ export default function Intersection({ ...props }) {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.intersection}>
-        <Subtitle text="Detect intersection of lemmata between a set of authors" />
-        <div className={styles.searchForm}>
-          <input
-            className={styles.searchFormInput}
-            type="text"
-            name="intersectionSearch"
-            placeholder="e.g Marcus Tullius Cicero, Gaius Sallustius Crispus"
-            onChange={e => setText(e.target.value)}
-            value={text}
-          />
-          <button
-            className={styles.searchFormButton}
-            onClick={() => getResults(text)}
-            disabled={text.length === 0}
-          >
-            Search
-          </button>
-        </div>
+    <Search>
+      <Subtitle text="Detect intersection of lemmata between a set of authors" />
+      <div className={styles.searchForm}>
+        <TextInput
+          name="intersectionSearch"
+          placeholder="e.g Marcus Tullius Cicero, Gaius Sallustius Crispus"
+          onChange={e => setText(e.target.value)}
+          value={text}
+        />
+        <Button onClick={() => getResults(text)} disabled={text.length === 0}>
+          Search
+        </Button>
       </div>
       <Results results={results} type="intersection" clear={clear} />
-    </div>
+    </Search>
   );
 }

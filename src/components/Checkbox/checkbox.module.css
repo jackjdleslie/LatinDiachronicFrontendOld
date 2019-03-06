@@ -1,0 +1,8 @@
+.checkbox {
+  display: flex;
+  margin-top: 10px;
+}
+
+.label {
+  margin-left: 5px;
+}
