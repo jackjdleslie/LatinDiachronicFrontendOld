@@ -6,7 +6,7 @@ import Title from './components/Title';
 import Footer from './components/Footer';
 import Jumbo from './components/Jumbo';
 
-import Search from './containers/Search';
+import Lemmata from './containers/Lemmata';
 import Intersection from './containers/Intersection';
 
 import useSync from './hooks/useSync';
@@ -27,7 +27,7 @@ export default function App() {
         analysis of the Latin language, diachronic frequency analysis and aid
         for digital intertextual source.
       </Jumbo>
-      <Search />
+      <Lemmata />
       <Intersection />
       <Footer />
     </div>
