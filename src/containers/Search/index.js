@@ -81,7 +81,9 @@ export default function Search({ ...props }) {
                 clearLemmata();
               }}
             />
-            <label htmlFor="find">Find occurences</label>
+            <label className={styles.searchFormCheckboxLabel} htmlFor="find">
+              Find occurences
+            </label>
           </div>
         </div>
       </div>
