@@ -1,0 +1,14 @@
+version: '3.2'
+
+services:
+  latin-diachronic-database:
+    build: https://github.com/WizardOfMenlo/LatinDiachronicDatabase.git
+    volumes:
+      - ./data:/go/src/github.com/WizardOfMenlo/LatinDiachronicDatabase/data
+    ports:
+      - '8080:8080'
+
+  latin-diachronic-frontend:
+    image: latin-diachronic-frontend:latest
+    ports:
+      - '3000:3000'

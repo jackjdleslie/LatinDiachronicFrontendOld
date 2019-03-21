@@ -21,3 +21,13 @@ yarn
 # This command will run the development server
 yarn start
 ```
+
+## Using Docker
+
+You can use the web app in conjunction with the database using Docker, provided you have the database
+files necessary in a top level folder called `data/`. You'll also need Docker Compose installed. To
+use both the web app and the database, run the following command:
+
+```
+docker-compose up
+```
