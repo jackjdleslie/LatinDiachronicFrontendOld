@@ -6,7 +6,7 @@ import Subtitle from '../../components/Subtitle';
 import Select from '../../components/Select';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
-import Search from '../../components/Search';
+import Block from '../../components/Block';
 import Checkbox from '../../components/Checkbox';
 
 import Results from '../Results';
@@ -37,49 +37,53 @@ export default function Lemmata({ ...props }) {
   }
 
   return (
-    <Search>
-      <Subtitle text={`Search for occurences of lemmata in ${count} records`} />
-      <div className={styles.searchForm}>
-        <Select
-          name="searchOptions"
-          onChange={e => {
-            setSelect(e.target.value);
-            clearLemmata();
-          }}
-        >
-          <option value="lemma">Lemma</option>
-          <option value="form">Form</option>
-        </Select>
-        <TextInput
-          name="lemmaSearch"
-          placeholder={
-            select === 'lemma' || select === 'find'
-              ? 'e.g interdum'
-              : 'e.g interdumque'
-          }
-          onChange={e => setText(e.target.value)}
-          value={text}
-          checked={select === 'find' || select === 'match'}
+    <>
+      <Block>
+        <Subtitle
+          text={`Search for occurences of lemmata in ${count} records`}
         />
-        <Button
-          onClick={() => getLemmata(text, select)}
-          disabled={text.length === 0}
-        >
-          Search
-        </Button>
-      </div>
-      <div className={styles.searchForm}>
-        <Checkbox
-          id="find"
-          name="find"
-          onChange={e => {
-            find(e.target.checked);
-            clearLemmata();
-          }}
-          label="Find occurences"
-        />
-      </div>
+        <div className={styles.searchForm}>
+          <Select
+            name="searchOptions"
+            onChange={e => {
+              setSelect(e.target.value);
+              clearLemmata();
+            }}
+          >
+            <option value="lemma">Lemma</option>
+            <option value="form">Form</option>
+          </Select>
+          <TextInput
+            name="lemmaSearch"
+            placeholder={
+              select === 'lemma' || select === 'find'
+                ? 'e.g interdum'
+                : 'e.g interdumque'
+            }
+            onChange={e => setText(e.target.value)}
+            value={text}
+            checked={select === 'find' || select === 'match'}
+          />
+          <Button
+            onClick={() => getLemmata(text, select)}
+            disabled={text.length === 0}
+          >
+            Search
+          </Button>
+        </div>
+        <div className={styles.searchForm}>
+          <Checkbox
+            id="find"
+            name="find"
+            onChange={e => {
+              find(e.target.checked);
+              clearLemmata();
+            }}
+            label="Find occurences"
+          />
+        </div>
+      </Block>
       <Results results={lemmata} type={select} clear={clear} />
-    </Search>
+    </>
   );
 }

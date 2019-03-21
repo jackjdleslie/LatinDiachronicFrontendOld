@@ -17,6 +17,11 @@
   font-size: 16px;
 }
 
+.buttonNoMargin {
+  composes: button;
+  margin: 0;
+}
+
 .button:disabled {
   opacity: 0.8;
 }

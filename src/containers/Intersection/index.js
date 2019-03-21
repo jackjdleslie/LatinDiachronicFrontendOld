@@ -5,7 +5,7 @@ import useDetect from '../../hooks/useDetect';
 import Subtitle from '../../components/Subtitle';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
-import Search from '../../components/Search';
+import Block from '../../components/Block';
 
 import Results from '../Results';
 
@@ -21,20 +21,22 @@ export default function Intersection({ ...props }) {
   }
 
   return (
-    <Search>
-      <Subtitle text="Detect intersection of lemmata between a set of authors" />
-      <div className={styles.searchForm}>
-        <TextInput
-          name="intersectionSearch"
-          placeholder="e.g Marcus Tullius Cicero, Gaius Sallustius Crispus"
-          onChange={e => setText(e.target.value)}
-          value={text}
-        />
-        <Button onClick={() => getResults(text)} disabled={text.length === 0}>
-          Search
-        </Button>
-      </div>
+    <>
+      <Block>
+        <Subtitle text="Detect intersection of lemmata between a set of authors" />
+        <div className={styles.searchForm}>
+          <TextInput
+            name="intersectionSearch"
+            placeholder="e.g Marcus Tullius Cicero, Gaius Sallustius Crispus"
+            onChange={e => setText(e.target.value)}
+            value={text}
+          />
+          <Button onClick={() => getResults(text)} disabled={text.length === 0}>
+            Search
+          </Button>
+        </div>
+      </Block>
       <Results results={results} type="intersection" clear={clear} />
-    </Search>
+    </>
   );
 }

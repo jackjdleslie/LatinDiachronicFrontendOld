@@ -1,0 +1,14 @@
+.container {
+  margin: 0 auto;
+  max-width: 920px;
+}
+
+.text {
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 400px) {
+  .text {
+    font-size: 13px;
+  }
+}

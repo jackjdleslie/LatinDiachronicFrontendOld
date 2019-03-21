@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './search.module.css';
+import styles from './block.module.css';
 
-export default function Search({ children, ...props }) {
+export default function Block({ children, ...props }) {
   return (
     <div className={styles.container}>
       <div className={styles.inner}>{children}</div>
@@ -11,6 +11,6 @@ export default function Search({ children, ...props }) {
   );
 }
 
-Search.propTypes = {
+Block.propTypes = {
   children: PropTypes.node.isRequired,
 };
