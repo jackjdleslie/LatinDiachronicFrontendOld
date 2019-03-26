@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Autosuggest from 'react-autosuggest';
 
 import useDetect from '../../hooks/useDetect';
 
 import Subtitle from '../../components/Subtitle';
-import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import Block from '../../components/Block';
 
@@ -15,9 +16,62 @@ export default function Intersection({ ...props }) {
   const [text, setText] = useState('');
   const [results, getResults, clearResults] = useDetect(null);
 
+  const [authors, setAuthors] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
+  const [chosen, setChosen] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_LATIN_DIACHRONIC_API_URL}/authors`)
+      .then(results => {
+        console.log(results.data);
+        setAuthors(results.data);
+      })
+      .catch(() => {
+        setAuthors(null);
+      });
+  }, []);
+
   function clear() {
     clearResults();
     setText('');
+  }
+
+  function getSuggestions(value) {
+    console.log(value);
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0
+      ? []
+      : authors.filter(
+          author => author.toLowerCase().slice(0, inputLength) === inputValue
+        );
+  }
+
+  function onChange(event, { newValue }) {
+    setText(newValue);
+  }
+
+  function onSuggestionsFetchRequested({ value }) {
+    setSuggestions(getSuggestions(value));
+  }
+
+  function onSuggestionsClearRequested() {
+    setSuggestions([]);
+  }
+
+  function onSuggestionSelected(event, { suggestionValue }) {
+    setChosen([...chosen, suggestionValue]);
+    setText('');
+  }
+
+  function renderSuggestion(suggestion) {
+    return suggestion;
+  }
+
+  function renderInputComponent(inputProps) {
+    return <input {...inputProps} />;
   }
 
   return (
@@ -25,18 +79,40 @@ export default function Intersection({ ...props }) {
       <Block>
         <Subtitle text="Detect intersection of lemmata between a set of authors" />
         <div className={styles.searchForm}>
-          <TextInput
-            name="intersectionSearch"
-            placeholder="e.g Marcus Tullius Cicero, Gaius Sallustius Crispus"
-            onChange={e => setText(e.target.value)}
-            value={text}
-          />
-          <Button onClick={() => getResults(text)} disabled={text.length === 0}>
+          {authors && (
+            <Autosuggest
+              suggestions={suggestions}
+              onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={onSuggestionsClearRequested}
+              onSuggestionSelected={onSuggestionSelected}
+              getSuggestionValue={val => val}
+              renderSuggestion={renderSuggestion}
+              inputProps={{
+                value: text,
+                onChange: onChange,
+                name: 'intersectionSearch',
+                placeholder: 'e.g Publius Papinius Statius',
+              }}
+              renderInputComponent={renderInputComponent}
+            />
+          )}
+          <Button
+            onClick={() => getResults(chosen)}
+            disabled={chosen.length < 2}
+          >
             Search
           </Button>
         </div>
+        {chosen.length > 0 && chosen.map(author => <div>{author}</div>)}
       </Block>
-      <Results results={results} type="intersection" clear={clear} />
+      <Results
+        results={results}
+        type="intersection"
+        clear={() => {
+          clear();
+          setChosen([]);
+        }}
+      />
     </>
   );
 }
