@@ -6,4 +6,5 @@
 
 .authors {
   display: flex;
+  flex-wrap: wrap;
 }
