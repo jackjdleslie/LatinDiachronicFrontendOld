@@ -3,10 +3,12 @@ import axios from 'axios';
 import Autosuggest from 'react-autosuggest';
 
 import useDetect from '../../hooks/useDetect';
+import useSet from '../../hooks/useSet';
 
 import Subtitle from '../../components/Subtitle';
 import Button from '../../components/Button';
 import Block from '../../components/Block';
+import Author from '../../components/Author';
 
 import Results from '../Results';
 
@@ -18,7 +20,7 @@ export default function Intersection({ ...props }) {
 
   const [authors, setAuthors] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
-  const [chosen, setChosen] = useState([]);
+  const [chosen, chosenAdd, chosenDelete, chosenClear] = useSet();
 
   useEffect(() => {
     axios
@@ -38,7 +40,6 @@ export default function Intersection({ ...props }) {
   }
 
   function getSuggestions(value) {
-    console.log(value);
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
@@ -62,7 +63,7 @@ export default function Intersection({ ...props }) {
   }
 
   function onSuggestionSelected(event, { suggestionValue }) {
-    setChosen([...chosen, suggestionValue]);
+    chosenAdd(suggestionValue);
     setText('');
   }
 
@@ -97,20 +98,28 @@ export default function Intersection({ ...props }) {
             />
           )}
           <Button
-            onClick={() => getResults(chosen)}
-            disabled={chosen.length < 2}
+            onClick={() => getResults([...chosen])}
+            disabled={chosen.size < 2}
           >
             Search
           </Button>
         </div>
-        {chosen.length > 0 && chosen.map(author => <div>{author}</div>)}
+        {chosen.size > 0 && (
+          <div className={styles.authors}>
+            {[...chosen].map(author => (
+              <Author key={author} close={() => chosenDelete(author)}>
+                {author}
+              </Author>
+            ))}
+          </div>
+        )}
       </Block>
       <Results
         results={results}
         type="intersection"
         clear={() => {
           clear();
-          setChosen([]);
+          chosenClear();
         }}
       />
     </>

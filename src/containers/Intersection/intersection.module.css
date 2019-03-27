@@ -3,3 +3,7 @@
   flex-wrap: wrap;
   align-items: center;
 }
+
+.authors {
+  display: flex;
+}
