@@ -6,9 +6,7 @@ import Search from './pages/Search';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import AppContext from './context';
-import useCount from './hooks/useCount';
-import useAuthors from './hooks/useAuthors';
-import useSync from './hooks/useSync';
+import { useCount, useAuthors, useSync } from './hooks';
 
 function Index() {
   const count = useCount();

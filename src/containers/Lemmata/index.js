@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import useLemma from '../../hooks/useLemma';
+import { useLemma } from '../../hooks';
 
 import Subtitle from '../../components/Subtitle';
 import Select from '../../components/Select';

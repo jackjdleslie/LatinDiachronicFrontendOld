@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Autosuggest from 'react-autosuggest';
 
-import useDetect from '../../hooks/useDetect';
-import useSet from '../../hooks/useSet';
+import { useDetect, useSet } from '../../hooks';
 
 import Subtitle from '../../components/Subtitle';
 import Button from '../../components/Button';

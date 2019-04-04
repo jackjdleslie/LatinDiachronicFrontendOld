@@ -11,7 +11,6 @@ export default function useDetect(text) {
         `${process.env.REACT_APP_LATIN_DIACHRONIC_API_URL}/intersection/${text}`
       )
       .then(results => {
-        console.log(results);
         setResults(results.data);
       })
       .catch(() => {
