@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Header, Status, Title, Footer } from '../../components';
-
-import Results from '../../containers/Results';
-
+import { Results } from '../../containers';
 import { AppContext } from '../../context';
 
 import styles from './results.module.css';

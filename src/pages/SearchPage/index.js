@@ -1,10 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Header, Status, Title, Footer } from '../../components';
-
-import Lemmata from '../../containers/Lemmata';
-import Intersection from '../../containers/Intersection';
-
+import { Lemmata, Intersection } from '../../containers';
 import { AppContext } from '../../context';
 
 import styles from './search.module.css';
