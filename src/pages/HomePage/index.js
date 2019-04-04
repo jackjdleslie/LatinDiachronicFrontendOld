@@ -1,15 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import {
-  Header,
-  Status,
-  Title,
-  Footer,
-  Jumbo,
-  Block,
-  Subtitle,
-  Button,
-} from '../../components';
+import { Header, Status, Title, Footer, Jumbo, Block } from '../../components';
 
 import { Lemmata, Intersection } from '../../containers';
 
@@ -18,7 +9,7 @@ import styles from './home.module.css';
 import { AppContext } from '../../context';
 
 export default function HomePage({ history }) {
-  const { isSynced, lemmataCount, authorsCount } = useContext(AppContext);
+  const { isSynced } = useContext(AppContext);
   const [defaultType, setDefaultType] = useState(true);
 
   return (

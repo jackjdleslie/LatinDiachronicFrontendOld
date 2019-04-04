@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import Autosuggest from 'react-autosuggest';
 
 import { useSet } from '../../hooks';
-import { Subtitle, Button, Block, Author } from '../../components';
+import { Subtitle, Button, Author } from '../../components';
 
 import styles from './intersection.module.css';
 
