@@ -22,9 +22,7 @@ export default function Intersection({ history, ...props }) {
 
     return inputLength === 0
       ? []
-      : authors.filter(
-          author => author.toLowerCase().slice(0, inputLength) === inputValue
-        );
+      : authors.filter(author => author.toLowerCase().includes(inputValue));
   }
 
   function onChange(event, { newValue }) {
