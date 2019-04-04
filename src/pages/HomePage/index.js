@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import {
   Header,
@@ -11,12 +11,15 @@ import {
   Button,
 } from '../../components';
 
+import { Lemmata, Intersection } from '../../containers';
+
 import styles from './home.module.css';
 
 import { AppContext } from '../../context';
 
 export default function HomePage({ history }) {
-  const { isSynced } = useContext(AppContext);
+  const { isSynced, lemmataCount, authorsCount } = useContext(AppContext);
+  const [defaultType, setDefaultType] = useState(true);
 
   return (
     <div className={styles.container}>
@@ -34,34 +37,26 @@ export default function HomePage({ history }) {
         analysis of the Latin language, diachronic frequency analysis and aid
         for digital intertextual source.
       </Jumbo>
-      <Block>
-        <Subtitle text={`Search for occurences of lemmata`} />
-        <p className={styles.text}>
-          Scan and record all the lemmas attested in the whole corpus of extant
-          Latin Literature by attributing different inflected word-forms to the
-          correct headword(s) using the technology LEMLAT.
-        </p>
-        <Button
-          nomargin
-          onClick={() => {
-            history.push('/search/lemmata');
-          }}
+      <div className={styles.tabs}>
+        <div
+          className={defaultType ? styles.selected : styles.tab}
+          onClick={() => setDefaultType(true)}
         >
-          Go
-        </Button>
-      </Block>
+          Lemmata
+        </div>
+        <div
+          className={!defaultType ? styles.selected : styles.tab}
+          onClick={() => setDefaultType(false)}
+        >
+          Intersection
+        </div>
+      </div>
       <Block>
-        <Subtitle
-          text={`Detect intersection of lemmata between a set of authors`}
-        />
-        <p className={styles.text}>
-          Detect the words (and/or the word-forms) shared only by two authors in
-          the entire Latin literature. This function has been designed to
-          support the digital study of intertextuality.
-        </p>
-        <Button nomargin onClick={() => history.push('/search/intersection')}>
-          Go
-        </Button>
+        {defaultType ? (
+          <Lemmata history={history} />
+        ) : (
+          <Intersection history={history} />
+        )}
       </Block>
       <Footer />
     </div>

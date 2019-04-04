@@ -52,52 +52,50 @@ export default function Intersection({ history, ...props }) {
 
   return (
     <>
-      <Block>
-        <Subtitle
-          text={`Detect intersection of lemmata between a subset of ${authorsCount} authors`}
-        />
-        <div className={styles.searchForm}>
-          {authors && (
-            <Autosuggest
-              suggestions={suggestions}
-              onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={onSuggestionsClearRequested}
-              onSuggestionSelected={onSuggestionSelected}
-              getSuggestionValue={val => val}
-              renderSuggestion={renderSuggestion}
-              inputProps={{
-                value: text,
-                onChange: onChange,
-                name: 'intersectionSearch',
-                placeholder: 'e.g Publius Papinius Statius',
-              }}
-              renderInputComponent={renderInputComponent}
-            />
-          )}
-          <Button
-            onClick={() => {
-              setLoading(true);
-              search([...chosen])
-                .then(() => {
-                  history.push(`/results/intersection`);
-                })
-                .catch(() => setLoading(false));
+      <Subtitle
+        text={`Detect intersection of lemmata between a subset of ${authorsCount} authors`}
+      />
+      <div className={styles.searchForm}>
+        {authors && (
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={onSuggestionsClearRequested}
+            onSuggestionSelected={onSuggestionSelected}
+            getSuggestionValue={val => val}
+            renderSuggestion={renderSuggestion}
+            inputProps={{
+              value: text,
+              onChange: onChange,
+              name: 'intersectionSearch',
+              placeholder: 'e.g Publius Papinius Statius',
             }}
-            disabled={chosen.size < 2}
-          >
-            {loading ? '...' : 'Search'}
-          </Button>
-        </div>
-        {chosen.size > 0 && (
-          <div className={styles.authors}>
-            {[...chosen].map(author => (
-              <Author key={author} close={() => chosenDelete(author)}>
-                {author}
-              </Author>
-            ))}
-          </div>
+            renderInputComponent={renderInputComponent}
+          />
         )}
-      </Block>
+        <Button
+          onClick={() => {
+            setLoading(true);
+            search([...chosen])
+              .then(() => {
+                history.push(`/results/intersection`);
+              })
+              .catch(() => setLoading(false));
+          }}
+          disabled={chosen.size < 2}
+        >
+          {loading ? '...' : 'Search'}
+        </Button>
+      </div>
+      {chosen.size > 0 && (
+        <div className={styles.authors}>
+          {[...chosen].map(author => (
+            <Author key={author} close={() => chosenDelete(author)}>
+              {author}
+            </Author>
+          ))}
+        </div>
+      )}
     </>
   );
 }
