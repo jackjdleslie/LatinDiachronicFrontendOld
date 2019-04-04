@@ -1,27 +1,20 @@
 import React, { useState, useContext } from 'react';
 import Autosuggest from 'react-autosuggest';
 
-import { useDetect, useSet } from '../../hooks';
+import { useSet } from '../../hooks';
 import { Subtitle, Button, Block, Author } from '../../components';
-
-import Results from '../Results';
 
 import styles from './intersection.module.css';
 
-import AppContext from '../../context';
+import { AppContext } from '../../context';
 
-export default function Intersection({ ...props }) {
+export default function Intersection({ history, ...props }) {
   const [text, setText] = useState('');
-  const [results, getResults, clearResults] = useDetect(null);
+  const [loading, setLoading] = useState(false);
 
   const [suggestions, setSuggestions] = useState([]);
-  const [chosen, chosenAdd, chosenDelete, chosenClear] = useSet();
-  const { authors, authorsCount } = useContext(AppContext);
-
-  function clear() {
-    clearResults();
-    setText('');
-  }
+  const [chosen, chosenAdd, chosenDelete] = useSet();
+  const { authors, authorsCount, search } = useContext(AppContext);
 
   function getSuggestions(value) {
     const inputValue = value.trim().toLowerCase();
@@ -84,10 +77,17 @@ export default function Intersection({ ...props }) {
             />
           )}
           <Button
-            onClick={() => getResults([...chosen])}
+            onClick={() => {
+              setLoading(true);
+              search([...chosen])
+                .then(() => {
+                  history.push(`/results/intersection`);
+                })
+                .catch(() => setLoading(false));
+            }}
             disabled={chosen.size < 2}
           >
-            Search
+            {loading ? '...' : 'Search'}
           </Button>
         </div>
         {chosen.size > 0 && (
@@ -100,14 +100,6 @@ export default function Intersection({ ...props }) {
           </div>
         )}
       </Block>
-      <Results
-        results={results}
-        type="intersection"
-        clear={() => {
-          clear();
-          chosenClear();
-        }}
-      />
     </>
   );
 }

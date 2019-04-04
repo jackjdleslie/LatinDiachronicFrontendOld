@@ -13,9 +13,9 @@ import {
 
 import styles from './home.module.css';
 
-import AppContext from '../../context';
+import { AppContext } from '../../context';
 
-export default function Home({ history }) {
+export default function HomePage({ history }) {
   const { isSynced } = useContext(AppContext);
 
   return (

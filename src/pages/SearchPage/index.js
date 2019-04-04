@@ -5,11 +5,11 @@ import { Header, Status, Title, Footer } from '../../components';
 import Lemmata from '../../containers/Lemmata';
 import Intersection from '../../containers/Intersection';
 
-import AppContext from '../../context';
+import { AppContext } from '../../context';
 
 import styles from './search.module.css';
 
-export default function Search({ type, history, ...props }) {
+export default function SearchPage({ type, history, ...props }) {
   const { isSynced } = useContext(AppContext);
 
   return (
@@ -21,7 +21,11 @@ export default function Search({ type, history, ...props }) {
         />
         <Status text={isSynced ? 'Online' : 'Offline'} />
       </Header>
-      {type === 'lemmata' ? <Lemmata /> : <Intersection />}
+      {type === 'lemmata' ? (
+        <Lemmata history={history} />
+      ) : (
+        <Intersection history={history} />
+      )}
       <Footer />
     </div>
   );

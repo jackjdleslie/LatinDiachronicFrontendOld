@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 
-import { useLemma } from '../../hooks';
 import {
   Subtitle,
   Select,
@@ -10,22 +9,15 @@ import {
   Checkbox,
 } from '../../components';
 
-import Results from '../Results';
-
 import styles from './lemmata.module.css';
 
-import AppContext from '../../context';
+import { AppContext } from '../../context';
 
-export default function Lemmata({ ...props }) {
+export default function Lemmata({ history, ...props }) {
   const [text, setText] = useState('');
-  const [lemmata, getLemmata, clearLemmata] = useLemma();
   const [select, setSelect] = useState('lemma');
-  const { lemmataCount } = useContext(AppContext);
-
-  function clear() {
-    clearLemmata();
-    setText('');
-  }
+  const { lemmataCount, search } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
 
   function find(checked) {
     if (checked) {
@@ -48,7 +40,6 @@ export default function Lemmata({ ...props }) {
             name="searchOptions"
             onChange={e => {
               setSelect(e.target.value);
-              clearLemmata();
             }}
           >
             <option value="lemma">Lemma</option>
@@ -66,10 +57,17 @@ export default function Lemmata({ ...props }) {
             checked={select === 'find' || select === 'match'}
           />
           <Button
-            onClick={() => getLemmata(text, select)}
+            onClick={() => {
+              setLoading(true);
+              search(text, select)
+                .then(() => {
+                  history.push(`/results/${select}`);
+                })
+                .catch(() => setLoading(false));
+            }}
             disabled={text.length === 0}
           >
-            Search
+            {loading ? '...' : 'Search'}
           </Button>
         </div>
         <div className={styles.searchForm}>
@@ -78,13 +76,11 @@ export default function Lemmata({ ...props }) {
             name="find"
             onChange={e => {
               find(e.target.checked);
-              clearLemmata();
             }}
             label="Find occurences"
           />
         </div>
       </Block>
-      <Results results={lemmata} type={select} clear={clear} />
     </>
   );
 }

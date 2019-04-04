@@ -5,6 +5,8 @@ const AppContext = createContext({
   authorsCount: 0,
   authors: null,
   isSynced: false,
+  search: null,
+  results: null,
 });
 
-export default AppContext;
+export { AppContext };

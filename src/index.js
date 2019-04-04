@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Search from './pages/Search';
+import { HomePage, SearchPage, ResultsPage } from './pages';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
-import AppContext from './context';
-import { useCount, useAuthors, useSync } from './hooks';
+import { AppContext } from './context';
+import { useCount, useAuthors, useSync, useSearch } from './hooks';
 
 function Index() {
   const count = useCount();
   const [authors, authorsCount] = useAuthors();
   const isSynced = useSync();
+  const [results, search] = useSearch();
 
   return (
     <AppContext.Provider
@@ -20,17 +20,25 @@ function Index() {
         authorsCount: authorsCount,
         authors: authors,
         isSynced: isSynced,
+        search: search,
+        results: results,
       }}
     >
       <Router>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={HomePage} />
         <Route
           path="/search/lemmata"
-          render={({ ...props }) => <Search type="lemmata" {...props} />}
+          render={({ ...props }) => <SearchPage type="lemmata" {...props} />}
         />
         <Route
           path="/search/intersection"
-          render={({ ...props }) => <Search type="intersection" {...props} />}
+          render={({ ...props }) => (
+            <SearchPage type="intersection" {...props} />
+          )}
+        />
+        <Route
+          path="/results/:type"
+          render={({ ...props }) => <ResultsPage {...props} />}
         />
       </Router>
     </AppContext.Provider>

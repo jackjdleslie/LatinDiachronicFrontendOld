@@ -2,15 +2,14 @@ import React, { useContext } from 'react';
 
 import { Header, Status, Title, Footer } from '../../components';
 
-import Lemmata from '../../containers/Lemmata';
-import Intersection from '../../containers/Intersection';
+import Results from '../../containers/Results';
 
-import AppContext from '../../context';
+import { AppContext } from '../../context';
 
-import styles from './search.module.css';
+import styles from './results.module.css';
 
-export default function ResultsPage({ results, type, history, ...props }) {
-  const { isSynced } = useContext(AppContext);
+export default function ResultsPage({ match, history, ...props }) {
+  const { isSynced, results } = useContext(AppContext);
 
   return (
     <div className={styles.container}>
@@ -21,7 +20,7 @@ export default function ResultsPage({ results, type, history, ...props }) {
         />
         <Status text={isSynced ? 'Online' : 'Offline'} />
       </Header>
-      <Results results={results} type={type} />
+      <Results results={results} type={match.params.type} />
       <Footer />
     </div>
   );
