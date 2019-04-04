@@ -2,11 +2,7 @@ import React, { useState, useContext } from 'react';
 import Autosuggest from 'react-autosuggest';
 
 import { useDetect, useSet } from '../../hooks';
-
-import Subtitle from '../../components/Subtitle';
-import Button from '../../components/Button';
-import Block from '../../components/Block';
-import Author from '../../components/Author';
+import { Subtitle, Button, Block, Author } from '../../components';
 
 import Results from '../Results';
 

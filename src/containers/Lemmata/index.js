@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 
 import { useLemma } from '../../hooks';
-
-import Subtitle from '../../components/Subtitle';
-import Select from '../../components/Select';
-import TextInput from '../../components/TextInput';
-import Button from '../../components/Button';
-import Block from '../../components/Block';
-import Checkbox from '../../components/Checkbox';
+import {
+  Subtitle,
+  Select,
+  TextInput,
+  Button,
+  Block,
+  Checkbox,
+} from '../../components';
 
 import Results from '../Results';
 

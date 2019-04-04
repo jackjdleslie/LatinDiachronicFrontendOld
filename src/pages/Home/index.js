@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 
-import Header from '../../components/Header';
-import Status from '../../components/Status';
-import Title from '../../components/Title';
-import Footer from '../../components/Footer';
-import Jumbo from '../../components/Jumbo';
-import Block from '../../components/Block';
-import Subtitle from '../../components/Subtitle';
-import Button from '../../components/Button';
+import {
+  Header,
+  Status,
+  Title,
+  Footer,
+  Jumbo,
+  Block,
+  Subtitle,
+  Button,
+} from '../../components';
 
 import styles from './home.module.css';
 
