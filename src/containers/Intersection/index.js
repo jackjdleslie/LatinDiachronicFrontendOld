@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
 import Autosuggest from 'react-autosuggest';
 
 import useDetect from '../../hooks/useDetect';
@@ -14,25 +13,15 @@ import Results from '../Results';
 
 import styles from './intersection.module.css';
 
+import AppContext from '../../context';
+
 export default function Intersection({ ...props }) {
   const [text, setText] = useState('');
   const [results, getResults, clearResults] = useDetect(null);
 
-  const [authors, setAuthors] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [chosen, chosenAdd, chosenDelete, chosenClear] = useSet();
-
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_LATIN_DIACHRONIC_API_URL}/authors`)
-      .then(results => {
-        console.log(results.data);
-        setAuthors(results.data);
-      })
-      .catch(() => {
-        setAuthors(null);
-      });
-  }, []);
+  const { authors, authorsCount } = useContext(AppContext);
 
   function clear() {
     clearResults();
@@ -78,7 +67,9 @@ export default function Intersection({ ...props }) {
   return (
     <>
       <Block>
-        <Subtitle text="Detect intersection of lemmata between a set of authors" />
+        <Subtitle
+          text={`Detect intersection of lemmata between a subset of ${authorsCount} authors`}
+        />
         <div className={styles.searchForm}>
           {authors && (
             <Autosuggest

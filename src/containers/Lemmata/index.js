@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import useLemma from '../../hooks/useLemma';
 
@@ -13,13 +13,13 @@ import Results from '../Results';
 
 import styles from './lemmata.module.css';
 
-import useCount from '../../hooks/useCount';
+import AppContext from '../../context';
 
 export default function Lemmata({ ...props }) {
   const [text, setText] = useState('');
   const [lemmata, getLemmata, clearLemmata] = useLemma();
   const [select, setSelect] = useState('lemma');
-  const count = useCount();
+  const { lemmataCount } = useContext(AppContext);
 
   function clear() {
     clearLemmata();
@@ -40,7 +40,7 @@ export default function Lemmata({ ...props }) {
     <>
       <Block>
         <Subtitle
-          text={`Search for occurences of lemmata in ${count} records`}
+          text={`Search for occurences of lemmata in ${lemmataCount} records`}
         />
         <div className={styles.searchForm}>
           <Select

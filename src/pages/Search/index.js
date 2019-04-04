@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Header from '../../components/Header';
 import Status from '../../components/Status';
@@ -8,12 +8,12 @@ import Footer from '../../components/Footer';
 import Lemmata from '../../containers/Lemmata';
 import Intersection from '../../containers/Intersection';
 
-import useSync from '../../hooks/useSync';
+import AppContext from '../../context';
 
 import styles from './search.module.css';
 
 export default function Search({ type, history, ...props }) {
-  const isSynced = useSync();
+  const { isSynced } = useContext(AppContext);
 
   return (
     <div className={styles.container}>

@@ -5,20 +5,37 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
+import AppContext from './context';
+import useCount from './hooks/useCount';
+import useAuthors from './hooks/useAuthors';
+import useSync from './hooks/useSync';
 
 function Index() {
+  const count = useCount();
+  const [authors, authorsCount] = useAuthors();
+  const isSynced = useSync();
+
   return (
-    <Router>
-      <Route path="/" exact component={Home} />
-      <Route
-        path="/search/lemmata"
-        render={({ ...props }) => <Search type="lemmata" {...props} />}
-      />
-      <Route
-        path="/search/intersection"
-        render={({ ...props }) => <Search type="intersection" {...props} />}
-      />
-    </Router>
+    <AppContext.Provider
+      value={{
+        lemmataCount: count,
+        authorsCount: authorsCount,
+        authors: authors,
+        isSynced: isSynced,
+      }}
+    >
+      <Router>
+        <Route path="/" exact component={Home} />
+        <Route
+          path="/search/lemmata"
+          render={({ ...props }) => <Search type="lemmata" {...props} />}
+        />
+        <Route
+          path="/search/intersection"
+          render={({ ...props }) => <Search type="intersection" {...props} />}
+        />
+      </Router>
+    </AppContext.Provider>
   );
 }
 

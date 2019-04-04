@@ -10,5 +10,6 @@ services:
 
   latin-diachronic-frontend:
     image: latin-diachronic-frontend:latest
+    build: .
     ports:
       - '3000:3000'

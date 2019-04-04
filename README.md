@@ -31,3 +31,10 @@ use both the web app and the database, run the following command:
 ```
 docker-compose up
 ```
+
+To rebuild the frontend without restarting the database, run:
+
+```
+docker-compose build latin-diachronic-frontend
+docker-compose up -d
+```
