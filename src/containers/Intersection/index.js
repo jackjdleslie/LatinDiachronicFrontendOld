@@ -20,6 +20,8 @@ export default function Intersection({ history, ...props }) {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
+    if (!authors) return [];
+
     return inputLength === 0
       ? []
       : authors
@@ -58,23 +60,21 @@ export default function Intersection({ history, ...props }) {
         text={`Detect intersection of lemmata between a subset of ${authorsCount} authors`}
       />
       <div className={styles.searchForm}>
-        {authors && (
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={onSuggestionsClearRequested}
-            onSuggestionSelected={onSuggestionSelected}
-            getSuggestionValue={val => val}
-            renderSuggestion={renderSuggestion}
-            inputProps={{
-              value: text,
-              onChange: onChange,
-              name: 'intersectionSearch',
-              placeholder: 'e.g Publius Papinius Statius',
-            }}
-            renderInputComponent={renderInputComponent}
-          />
-        )}
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={onSuggestionsClearRequested}
+          onSuggestionSelected={onSuggestionSelected}
+          getSuggestionValue={val => val}
+          renderSuggestion={renderSuggestion}
+          inputProps={{
+            value: text,
+            onChange: onChange,
+            name: 'intersectionSearch',
+            placeholder: 'e.g Publius Papinius Statius',
+          }}
+          renderInputComponent={renderInputComponent}
+        />
         <Button
           onClick={() => {
             setLoading(true);
