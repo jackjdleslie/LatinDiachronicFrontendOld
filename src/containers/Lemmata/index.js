@@ -5,7 +5,6 @@ import {
   Select,
   TextInput,
   Button,
-  Block,
   Checkbox,
 } from '../../components';
 
@@ -31,56 +30,54 @@ export default function Lemmata({ history, ...props }) {
 
   return (
     <>
-      <Block>
-        <Subtitle
-          text={`Search for occurences of lemmata in ${lemmataCount} records`}
+      <Subtitle
+        text={`Search for occurences of lemmata in ${lemmataCount} records`}
+      />
+      <div className={styles.searchForm}>
+        <Select
+          name="searchOptions"
+          onChange={e => {
+            setSelect(e.target.value);
+          }}
+        >
+          <option value="lemma">Lemma</option>
+          <option value="form">Form</option>
+        </Select>
+        <TextInput
+          name="lemmaSearch"
+          placeholder={
+            select === 'lemma' || select === 'find'
+              ? 'e.g interdum'
+              : 'e.g interdumque'
+          }
+          onChange={e => setText(e.target.value)}
+          value={text}
+          checked={select === 'find' || select === 'match'}
         />
-        <div className={styles.searchForm}>
-          <Select
-            name="searchOptions"
-            onChange={e => {
-              setSelect(e.target.value);
-            }}
-          >
-            <option value="lemma">Lemma</option>
-            <option value="form">Form</option>
-          </Select>
-          <TextInput
-            name="lemmaSearch"
-            placeholder={
-              select === 'lemma' || select === 'find'
-                ? 'e.g interdum'
-                : 'e.g interdumque'
-            }
-            onChange={e => setText(e.target.value)}
-            value={text}
-            checked={select === 'find' || select === 'match'}
-          />
-          <Button
-            onClick={() => {
-              setLoading(true);
-              search(text, select)
-                .then(() => {
-                  history.push(`/results/${select}`);
-                })
-                .catch(() => setLoading(false));
-            }}
-            disabled={text.length === 0}
-          >
-            {loading ? '...' : 'Search'}
-          </Button>
-        </div>
-        <div className={styles.searchForm}>
-          <Checkbox
-            id="find"
-            name="find"
-            onChange={e => {
-              find(e.target.checked);
-            }}
-            label="Find occurences"
-          />
-        </div>
-      </Block>
+        <Button
+          onClick={() => {
+            setLoading(true);
+            search(text, select)
+              .then(() => {
+                history.push(`/results/${select}`);
+              })
+              .catch(() => setLoading(false));
+          }}
+          disabled={text.length === 0}
+        >
+          {loading ? '...' : 'Search'}
+        </Button>
+      </div>
+      <div className={styles.searchForm}>
+        <Checkbox
+          id="find"
+          name="find"
+          onChange={e => {
+            find(e.target.checked);
+          }}
+          label="Display occurences"
+        />
+      </div>
     </>
   );
 }

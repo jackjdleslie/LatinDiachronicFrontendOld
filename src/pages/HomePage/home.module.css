@@ -7,6 +7,25 @@
   font-weight: 300;
 }
 
+.tabs {
+  display: flex;
+}
+
+.tab {
+  padding: 10px;
+  margin-right: 5px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border: solid 1px #b1d1dd;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.selected {
+  composes: tab;
+  background-color: #c0d6df;
+}
+
 @media only screen and (max-width: 400px) {
   .text {
     font-size: 13px;

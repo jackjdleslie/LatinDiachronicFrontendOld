@@ -9,5 +9,6 @@
   padding: 10px 30px 30px 30px;
   background-color: #c0d6df;
   display: block;
-  border-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
