@@ -6,6 +6,8 @@ The Latin Diachronic Database is a project of Digital Humanities invented by Tom
 
 For more information on the toolkit view the [original repository](https://github.com/WizardOfMenlo/LatinDiachronicDatabase).
 
+This project is an intuitive and easy to use front-end for the toolkit, developed by **Jack Leslie** in conjunction with the original authors **Tommaso Spinelli** and **Giacomo Fenzi**.
+
 ## Using the live web application
 
 Currently the latest build of the `master` branch is deployed via [Netlify](https://www.netlify.com) and is available at the link [latin.netlify.com](https://latin.netlify.com). You can also run and develop it locally by cloning this repository and starting a development server.
@@ -38,3 +40,9 @@ To rebuild the frontend without restarting the database, run:
 docker-compose build latin-diachronic-frontend
 docker-compose up -d
 ```
+
+## Authors
+
+*  **Jack Leslie** - *Developer* - [jackleslie](https://github.com/jackleslie)
+*  **Giacomo Fenzi** - *Developer* - [WizardOfMenlo](https://github.com/WizardOfMenlo)
+*  **Tommaso Spinelli** - *Inventor/Latinist* - [tommasospinelli](https://github.com/tommasospinelli)
