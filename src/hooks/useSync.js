@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useQuery } from 'urql';
+import gql from 'graphql-tag';
+
+const GET_API_VERSION = gql`
+  {
+    apiVersion
+  }
+`;
 
 export default function useSync() {
   const [isSynced, setIsSynced] = useState(false);
+  const [{ data, error }] = useQuery({ query: GET_API_VERSION });
 
   useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_LATIN_DIACHRONIC_API_URL)
-      .then(() => {
-        setIsSynced(true);
-      })
-      .catch(() => {
-        setIsSynced(false);
-      });
-  }, []);
+    if (error) console.log(error);
+    if (data) setIsSynced(true);
+  }, [data, error]);
 
   return isSynced;
 }
