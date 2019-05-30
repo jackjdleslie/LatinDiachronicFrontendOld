@@ -1,4 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'urql';
+import gql from 'graphql-tag';
 
 import { Header, Status, Title, Footer, Jumbo, Block } from '../../components';
 
@@ -6,10 +8,8 @@ import { Lemmata, Intersection } from '../../containers';
 
 import styles from './home.module.css';
 
-import { AppContext } from '../../context';
-
 export default function HomePage({ history }) {
-  const { isSynced } = useContext(AppContext);
+  const [{ data }] = useQuery({ query: GET_API_VERSION });
   const [defaultType, setDefaultType] = useState(true);
 
   return (
@@ -19,7 +19,7 @@ export default function HomePage({ history }) {
           text="Latin Diachronic Analysis"
           onClick={() => history.push('/')}
         />
-        <Status text={isSynced ? 'Online' : 'Offline'} />
+        <Status text={data ? data.apiVersion : 'Offline'} />
       </Header>
       <Jumbo title="An innovative toolkit for the quantitative computational analysis of the Latin language">
         This project revolves around allowing for a flexible and easy to use
@@ -53,3 +53,9 @@ export default function HomePage({ history }) {
     </div>
   );
 }
+
+const GET_API_VERSION = gql`
+  {
+    apiVersion
+  }
+`;

@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Autosuggest from 'react-autosuggest';
+import { useQuery } from 'urql';
+import gql from 'graphql-tag';
 
 import { useSet } from '../../hooks';
 import { Subtitle, Button, Author } from '../../components';
@@ -14,7 +16,13 @@ export default function Intersection({ history, ...props }) {
 
   const [suggestions, setSuggestions] = useState([]);
   const [chosen, chosenAdd, chosenDelete] = useSet();
-  const { authors, authorsCount, search } = useContext(AppContext);
+  const { search } = useContext(AppContext);
+  const [
+    {
+      data: { authors },
+    },
+  ] = useQuery({ query: GET_AUTHORS });
+  const authorsCount = authors ? authors.length : 0;
 
   function getSuggestions(value) {
     const inputValue = value.trim().toLowerCase();
@@ -25,7 +33,7 @@ export default function Intersection({ history, ...props }) {
     return inputLength === 0
       ? []
       : authors
-          .filter(author => author.toLowerCase().includes(inputValue))
+          .filter(author => author.name.toLowerCase().includes(inputValue))
           .slice(0, 10);
   }
 
@@ -92,8 +100,8 @@ export default function Intersection({ history, ...props }) {
       {chosen.size > 0 && (
         <div className={styles.authors}>
           {[...chosen].map(author => (
-            <Author key={author} close={() => chosenDelete(author)}>
-              {author}
+            <Author key={author.name} close={() => chosenDelete(author.name)}>
+              {author.name}
             </Author>
           ))}
         </div>
@@ -101,3 +109,11 @@ export default function Intersection({ history, ...props }) {
     </>
   );
 }
+
+const GET_AUTHORS = gql`
+  {
+    authors {
+      name
+    }
+  }
+`;

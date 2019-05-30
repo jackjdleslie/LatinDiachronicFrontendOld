@@ -3,52 +3,24 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider, createClient } from 'urql';
 
-import { HomePage, SearchPage, ResultsPage } from './pages';
+import { HomePage, ResultsPage } from './pages';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
-import { AppContext } from './context';
-import { useCount, useAuthors, useSync, useSearch } from './hooks';
 
 const client = createClient({
   url: process.env.REACT_APP_LATIN_DIACHRONIC_API_URL,
 });
 
 function Index() {
-  const count = useCount();
-  const [authors, authorsCount] = useAuthors();
-  const isSynced = useSync();
-  const [results, search] = useSearch();
-
   return (
     <Provider value={client}>
-      <AppContext.Provider
-        value={{
-          lemmataCount: count,
-          authorsCount: authorsCount,
-          authors: authors,
-          isSynced: isSynced,
-          search: search,
-          results: results,
-        }}
-      >
-        <Router>
-          <Route path="/" exact component={HomePage} />
-          <Route
-            path="/search/lemmata"
-            render={({ ...props }) => <SearchPage type="lemmata" {...props} />}
-          />
-          <Route
-            path="/search/intersection"
-            render={({ ...props }) => (
-              <SearchPage type="intersection" {...props} />
-            )}
-          />
-          <Route
-            path="/results/:type"
-            render={({ ...props }) => <ResultsPage {...props} />}
-          />
-        </Router>
-      </AppContext.Provider>
+      <Router>
+        <Route path="/" exact component={HomePage} />
+        <Route
+          path="/results/:type"
+          render={({ ...props }) => <ResultsPage {...props} />}
+        />
+      </Router>
     </Provider>
   );
 }
