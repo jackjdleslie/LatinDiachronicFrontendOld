@@ -1,0 +1,20 @@
+.container {
+  font-family: system-ui;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #222;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 800px;
+}
+
+.header {
+  font-size: 42px;
+}

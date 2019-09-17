@@ -1,0 +1,15 @@
+.authors {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+}
+
+.plus {
+  color: #888;
+  padding-right: 5px;
+  font-size: 22px;
+}
+
+.searchContainer {
+  max-width: 680px;
+}
