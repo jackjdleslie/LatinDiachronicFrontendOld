@@ -1,4 +1,3 @@
-import HomePage from './HomePage';
-import ResultsPage from './ResultsPage';
+import React from "react"
 
-export { HomePage, ResultsPage };
+export default () => <div>Hello world!</div>
