@@ -1,0 +1,20 @@
+.button {
+  width: 50%;
+  height: 50px;
+  padding: 10px 20px;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-family: system-ui;
+  margin-top: 40px;
+  background-color: #456990;
+  border-color: #456990;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.button:focus {
+  outline: none;
+}

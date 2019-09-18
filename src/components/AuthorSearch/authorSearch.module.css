@@ -13,3 +13,9 @@
 .searchContainer {
   max-width: 680px;
 }
+
+.label {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #888;
+}

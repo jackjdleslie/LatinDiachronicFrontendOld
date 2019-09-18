@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 
 import './react-autosuggest.css';
-import styles from './search.module.css';
+import styles from './authorSearch.module.css';
 import { Author } from '../../components';
 import { useSet } from '../../hooks';
 
@@ -44,14 +44,23 @@ function renderSuggestion(suggestion) {
 }
 
 function renderSectionTitle(section) {
-  return <span>{section.title}</span>;
+  return null;
+}
+
+function renderInputComponent(inputProps) {
+  return (
+    <div className="inputContainer">
+      <input {...inputProps} />
+      <span className="icon">⌄</span>
+    </div>
+  );
 }
 
 function getSectionSuggestions(section) {
   return section.data;
 }
 
-const Search = ({ authors }) => {
+const AuthorSearch = ({ authors }) => {
   const [value, setValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [chosen, chosenAdd, chosenDelete] = useSet();
@@ -81,13 +90,14 @@ const Search = ({ authors }) => {
   }
 
   const inputProps = {
-    placeholder: 'e.g interdum, interdumque, Publius Papinius Statius...',
+    placeholder: chosen.size === 0 ? 'all authors' : 'add more',
     value,
     onChange,
   };
 
   return (
     <div className={styles.searchContainer}>
+      <label className={styles.label}>Search by author</label>
       <Autosuggest
         multiSection={true}
         suggestions={suggestions}
@@ -99,6 +109,7 @@ const Search = ({ authors }) => {
         renderSectionTitle={renderSectionTitle}
         getSectionSuggestions={getSectionSuggestions}
         inputProps={inputProps}
+        renderInputComponent={renderInputComponent}
       />
       {chosen.size > 0 && (
         <div className={styles.authors}>
@@ -113,12 +124,12 @@ const Search = ({ authors }) => {
   );
 };
 
-Search.propTypes = {
+AuthorSearch.propTypes = {
   authors: PropTypes.arrayOf(PropTypes.object),
 };
 
-Search.defaultProps = {
+AuthorSearch.defaultProps = {
   authors: [],
 };
 
-export default Search;
+export default AuthorSearch;

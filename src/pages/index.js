@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { Search } from '../components';
+import { AuthorSearch, LemmaSearch, Button } from '../components';
 import styles from './index.module.css';
 
 export default ({
@@ -12,7 +12,9 @@ export default ({
   <div className={styles.container}>
     <div className={styles.main}>
       <h1 className={styles.header}>Latin Diachronic Analysis</h1>
-      <Search authors={authors} />
+      <AuthorSearch authors={authors} />
+      <LemmaSearch />
+      <Button />
     </div>
   </div>
 );

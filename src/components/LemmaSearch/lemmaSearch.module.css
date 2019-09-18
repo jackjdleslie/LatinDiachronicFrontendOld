@@ -1,0 +1,26 @@
+.input {
+  margin-top: 5px;
+  width: 640px;
+  height: 30px;
+  padding: 10px 20px;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #999;
+}
+
+.searchContainer {
+  margin-top: 15px;
+  max-width: 680px;
+}
+
+.label {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #888;
+}
