@@ -19,7 +19,12 @@ export default ({
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        <Header>Latin Diachronic Analysis</Header>
+        <Header
+          subtitle="An innovative toolkit for the quantitative computational analysis of
+          the Latin language"
+        >
+          Latin Diachronic Analysis
+        </Header>
         <AuthorSearch authors={authors} onUpdate={setAuthorsToSearch} />
         <LemmaSearch onUpdate={setLemmaToSearch} />
         {isDisabled ? (
