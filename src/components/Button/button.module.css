@@ -7,12 +7,18 @@
   border: 1px solid #aaa;
   border-radius: 4px;
   font-family: system-ui;
-  margin-top: 40px;
   background-color: #456990;
   border-color: #456990;
   color: #ffffff;
   cursor: pointer;
   font-weight: 400;
+}
+
+.buttonDisabled {
+  composes: button;
+  cursor: auto;
+  background-color: #a1b2c4;
+  border-color: #a1b2c4;
 }
 
 .button:focus {

@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 
 import styles from './button.module.css';
 
-export default function Button({ text, ...props }) {
+export default function Button({ text, disabled, ...props }) {
   return (
-    <button className={styles.button} {...props}>
+    <button
+      className={disabled ? styles.buttonDisabled : styles.button}
+      {...props}
+    >
       {text}
     </button>
   );
@@ -13,8 +16,10 @@ export default function Button({ text, ...props }) {
 
 Button.propTypes = {
   text: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
   text: 'Search',
+  disabled: false,
 };

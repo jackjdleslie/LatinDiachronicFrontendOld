@@ -10,7 +10,11 @@ export default ({
   },
 }) => {
   const [authorsToSearch, setAuthorsToSearch] = useState([]);
-  const [lemmaToSearch, setLemmaToSearch] = useState([]);
+  const [lemmaToSearch, setLemmaToSearch] = useState('');
+
+  const isDisabled =
+    (!authorsToSearch.length && !lemmaToSearch) ||
+    (authorsToSearch.length === 1 && !lemmaToSearch);
 
   return (
     <div className={styles.container}>
@@ -18,13 +22,19 @@ export default ({
         <Header>Latin Diachronic Analysis</Header>
         <AuthorSearch authors={authors} onUpdate={setAuthorsToSearch} />
         <LemmaSearch onUpdate={setLemmaToSearch} />
-        <Link
-          to="/results"
-          className={styles.link}
-          state={{ authors: authorsToSearch, lemma: lemmaToSearch }}
-        >
-          <Button />
-        </Link>
+        {isDisabled ? (
+          <div className={styles.link}>
+            <Button disabled />
+          </div>
+        ) : (
+          <Link
+            to="/results"
+            className={styles.link}
+            state={{ authors: authorsToSearch, lemma: lemmaToSearch }}
+          >
+            <Button />
+          </Link>
+        )}
       </div>
     </div>
   );
