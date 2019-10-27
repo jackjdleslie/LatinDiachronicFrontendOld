@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 
@@ -6,8 +6,12 @@ import styles from './lemmaSearch.module.css';
 import { Author } from '../../components';
 import { useSet } from '../../hooks';
 
-const LemmaSearch = () => {
+const LemmaSearch = ({ onUpdate }) => {
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    onUpdate(value);
+  }, [value]);
 
   const onChange = ({ target: { value } }) => {
     setValue(value);
@@ -27,11 +31,7 @@ const LemmaSearch = () => {
 };
 
 LemmaSearch.propTypes = {
-  authors: PropTypes.arrayOf(PropTypes.object),
-};
-
-LemmaSearch.defaultProps = {
-  authors: [],
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default LemmaSearch;

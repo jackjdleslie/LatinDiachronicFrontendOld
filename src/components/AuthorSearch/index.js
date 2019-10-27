@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 
@@ -60,10 +60,14 @@ function getSectionSuggestions(section) {
   return section.data;
 }
 
-const AuthorSearch = ({ authors }) => {
+const AuthorSearch = ({ authors, onUpdate }) => {
   const [value, setValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [chosen, chosenAdd, chosenDelete] = useSet();
+
+  useEffect(() => {
+    onUpdate(Array.from(chosen));
+  }, [chosen]);
 
   let data = [
     {
@@ -126,6 +130,7 @@ const AuthorSearch = ({ authors }) => {
 
 AuthorSearch.propTypes = {
   authors: PropTypes.arrayOf(PropTypes.object),
+  onUpdate: PropTypes.func.isRequired,
 };
 
 AuthorSearch.defaultProps = {

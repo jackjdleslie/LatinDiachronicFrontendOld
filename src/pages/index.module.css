@@ -15,16 +15,12 @@
   max-width: 800px;
 }
 
-.header {
-  font-size: 42px;
+.link {
+  width: 60%;
 }
 
 @media only screen and (max-width: 600px) {
   .container {
     padding: 20px;
-  }
-
-  .header {
-    font-size: 32px;
   }
 }
