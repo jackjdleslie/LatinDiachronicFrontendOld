@@ -1,5 +1,5 @@
 .button {
-  width: 50%;
+  width: 60%;
   height: 50px;
   padding: 10px 20px;
   font-weight: 300;
@@ -17,4 +17,10 @@
 
 .button:focus {
   outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .button {
+    width: 100%;
+  }
 }

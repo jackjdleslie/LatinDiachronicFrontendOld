@@ -18,3 +18,13 @@
 .header {
   font-size: 42px;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .header {
+    font-size: 32px;
+  }
+}

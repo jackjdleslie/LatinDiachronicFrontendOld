@@ -1,7 +1,7 @@
 .authors {
   display: flex;
   flex-wrap: wrap;
-  max-width: 600px;
+  width: 100%;
 }
 
 .plus {
@@ -11,7 +11,7 @@
 }
 
 .searchContainer {
-  max-width: 680px;
+  width: 100%;
 }
 
 .label {

@@ -15,7 +15,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-autosuggest": "^9.4.3",
-    "react-dom": "^16.9.0"
+    "react-dom": "npm:@hot-loader/react-dom"
   },
   "devDependencies": {
     "husky": "^3.0.5",

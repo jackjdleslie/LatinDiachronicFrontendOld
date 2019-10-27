@@ -43,6 +43,6 @@ docker-compose up -d
 
 ## Authors
 
-*  **Jack Leslie** - *Developer* - [jackleslie](https://github.com/jackleslie)
-*  **Giacomo Fenzi** - *Developer* - [WizardOfMenlo](https://github.com/WizardOfMenlo)
-*  **Tommaso Spinelli** - *Inventor/Latinist* - [tommasospinelli](https://github.com/tommasospinelli)
+- **Jack Leslie** - _Developer_ - [jackleslie](https://github.com/jackleslie)
+- **Giacomo Fenzi** - _Developer_ - [WizardOfMenlo](https://github.com/WizardOfMenlo)
+- **Tommaso Spinelli** - _Inventor/Latinist_ - [tommasospinelli](https://github.com/tommasospinelli)
