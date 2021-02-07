@@ -1,0 +1,41 @@
+.container {
+  font-family: system-ui;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #222;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  max-width: 800px;
+}
+
+.results {
+  font-weight: 400;
+}
+
+.lemma {
+  font-weight: 600;
+}
+
+.occurenceSourceName {
+  margin-bottom: 4px;
+}
+
+.occurenceLine {
+  margin: 0;
+  line-height: 1.4;
+  color: #666666;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+}

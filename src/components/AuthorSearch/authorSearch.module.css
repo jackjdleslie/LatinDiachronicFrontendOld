@@ -1,0 +1,21 @@
+.authors {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.plus {
+  color: #888;
+  padding-right: 5px;
+  font-size: 22px;
+}
+
+.searchContainer {
+  width: 100%;
+}
+
+.label {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #888;
+}

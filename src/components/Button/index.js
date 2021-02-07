@@ -3,22 +3,23 @@ import PropTypes from 'prop-types';
 
 import styles from './button.module.css';
 
-export default function Button({ children, nomargin, ...props }) {
+export default function Button({ text, disabled, ...props }) {
   return (
     <button
-      className={nomargin ? styles.buttonNoMargin : styles.button}
+      className={disabled ? styles.buttonDisabled : styles.button}
       {...props}
     >
-      {children}
+      {text}
     </button>
   );
 }
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  nomargin: PropTypes.bool,
+  text: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
-  nomargin: false,
+  text: 'Search',
+  disabled: false,
 };

@@ -1,0 +1,27 @@
+.container {
+  font-family: system-ui;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #222;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 800px;
+}
+
+.link {
+  width: 60%;
+  margin-top: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+}

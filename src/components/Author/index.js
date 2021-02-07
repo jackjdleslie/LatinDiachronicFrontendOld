@@ -8,7 +8,7 @@ export default function Author({ children, close, ...props }) {
     <div className={styles.author} {...props}>
       {children}
       <span className={styles.close} onClick={close}>
-        ✖
+        ✕
       </span>
     </div>
   );
